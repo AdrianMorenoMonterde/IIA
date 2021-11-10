@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cafe_orden>
+    <orden_id>1</orden_id>
+    <bebidas>
+        <bebida>
+            <nombre>cola</nombre>
+            <stock>fria</stock>
+        </bebida>
+        <bebida>
+            <nombre>cerveza</nombre>
+            <stock>fria</stock>
+        </bebida>
+        <bebida>
+            <nombre>cafe</nombre>
+            <stock>caliente</stock>
+        </bebida>
+        <bebida>
+            <nombre>te</nombre>
+            <stock>caliente</stock>
+        </bebida>
+    </bebidas>
+</cafe_orden>
