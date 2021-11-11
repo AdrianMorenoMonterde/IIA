@@ -1,14 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Tareas;
 
-/**
- *
- * @author adrianmorenomonterde
- */
-public class Distributor {
-    
+import Puertos.Slot;
+
+public class Distributor 
+{
+    //Para el distributor necesitamos dos slots de salida
+    private Slot entrada;
+    private Slot salida1;
+    private Slot salida2;
+   
 }
