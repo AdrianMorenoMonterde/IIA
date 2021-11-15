@@ -12,3 +12,5 @@
 * **Tareas**: Aggregator, Context Enricher, Correlator, Distributor, Merger, Replicator, Splitter y Translator.
 * **Aplicación**: 
 * **Puertos**: Puerto entrada, Puerto salida, Puerto solicitud y Slot.
+
+## BBDD: phpMyAdmin SQL Dump
