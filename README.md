@@ -13,4 +13,7 @@
 * **Aplicación**: 
 * **Puertos**: Puerto entrada, Puerto salida, Puerto solicitud y Slot.
 
-## BBDD: phpMyAdmin SQL Dump
+## BBDD: [phpMyAdmin SQL Dump](https://db4free.net)
+* **Nombre de la base de datos:** iia2021
+* **Usuario:** iia2021cafe
+* **Contraseña:** uhuetsi2021
