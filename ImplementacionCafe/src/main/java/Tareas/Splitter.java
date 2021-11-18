@@ -11,39 +11,39 @@ import org.w3c.dom.NodeList;
 
 public class Splitter 
 {
-    private Slot entrada;
-    private Slot salida;
+    private Slot input;
+    private Slot output;
     private NodeList bebidas;
     
-    public Splitter(Slot entrada, Slot salida)
+    public Splitter(Slot input, Slot output)
     {
-        this.entrada = entrada;
-        this.salida = salida;
+        this.input = input;
+        this.output = output;
     }
     
-    public Slot getEntrada()
+    public Slot getInput()
     {
-        return entrada;
+        return input;
     }
     
-    public Slot getSalida()
+    public Slot getOutput()
     {
-        return salida;
+        return output;
     }
     
-    public void setEntrada(Slot entrada)
+    public void setInput(Slot input)
     {
-        this.entrada = entrada;
+        this.input = input;
     }
     
-    public void setSalida(Slot salida)
+    public void setOutput(Slot output)
     {
-        this.salida = salida;
+        this.output = output;
     }
     
     public void run() throws Exception
     {
-        Document doc = entrada.read(); //Lee el slot de entrada
+        Document doc = input.read(); //Lee el slot de entrada
         XPath xPath = XPathFactory.newInstance().newXPath();
         bebidas = (NodeList) xPath.compile("//bebidas/*").evaluate(doc, XPathConstants.NODESET);
         NodeList order = doc.getElementsByTagName("orden_id");
@@ -67,7 +67,7 @@ public class Splitter
                 }
             }
             
-            salida.write(doc2); //Escribe en el slot de salida
+            output.write(doc2); //Escribe en el slot de salida
         }
     }
 }

@@ -15,45 +15,45 @@ import org.w3c.dom.NodeList;
 public class Distributor 
 {
     //Para el distributor necesitamos dos slots de salida
-    private Slot entrada;
-    private Slot salida1;
-    private Slot salida2;
+    private Slot input;
+    private Slot output1;
+    private Slot output2;
     
-    public Distributor(Slot entrada, Slot salida1, Slot salida2)
+    public Distributor(Slot input, Slot output1, Slot output2)
     {
-        this.entrada = entrada;
-        this.salida1 = salida1;
-        this.salida2 = salida2;
+        this.input = input;
+        this.output1 = output1;
+        this.output2 = output2;
     }
     
-    public Slot getEntrada()
+    public Slot getInput()
     {
-        return entrada;
+        return input;
     }
       
-    public Slot getSalida1()
+    public Slot getOutput1()
     {
-        return salida1;
+        return output1;
     }
     
-    public Slot getSalida2()
+    public Slot getOutput2()
     {
-        return salida2;
+        return output2;
     }
     
-    public void setEntrada(Slot entrada)
+    public void setInput(Slot input)
     {
-        this.entrada = entrada;
+        this.input = input;
     }
     
-    public void setSalida1(Slot salida1)
+    public void setOutput1(Slot output1)
     {
-        this.salida1 = salida1;
+        this.output1 = output1;
     }
     
-    public void setSalida2(Slot salida2)
+    public void setOutput2(Slot output2)
     {
-        this.salida2 = salida2;
+        this.output2 = output2;
     }
     
     public void setSalida(Slot s)
@@ -65,11 +65,11 @@ public class Distributor
     {
         try
         {
-            int contador = entrada.getCola().size();
+            int contador = input.getCola().size();
             
             for(int i=0; i<contador; i++)
             {
-                Document doc = entrada.read();
+                Document doc = input.read();
                 XPath xPath = XPathFactory.newInstance().newXPath();
                 NodeList nodo = (NodeList) xPath.compile("/bebida/tipo").evaluate(doc, XPathConstants.NODESET);
                 
@@ -80,9 +80,9 @@ public class Distributor
                     Element tipo = (Element) beb; 
                     
                     if(tipo.getTextContent().equalsIgnoreCase("caliente"))
-                        salida1.write(doc);
+                        output1.write(doc);
                     else
-                        salida2.write(doc);
+                        output2.write(doc);
                 }
             }
         } catch(XPathExpressionException ex)
