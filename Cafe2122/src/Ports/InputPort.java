@@ -1,14 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Ports;
 
-/**
- *
- * @author adrianmorenomonterde
- */
-public class InputPort {
+import org.w3c.dom.Document;
+
+public class InputPort 
+{
+    private Slot input = new Slot();
     
+    public void setinput(Slot input)
+    {
+        this.input = input;
+    }
+    
+    public Slot getInput()
+    {
+        return input;
+    }
+    
+    public void writeSlotInput(Document doc) throws Exception
+    {
+        input.write(doc);
+    }
+    
+    public Document readSlotInput() throws Exception
+    {
+        return input.read();
+    }
 }
