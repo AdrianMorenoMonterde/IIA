@@ -5,7 +5,7 @@
  */
 package Aplication;
 
-import Conectors.ConectorDB;
+import Connectors.ConnectorDB;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.util.logging.Level;
@@ -23,7 +23,7 @@ public class App
         String usuario = "iia2021cafe";
         String clave = "uhuetsi2021";
         String url = "jdbc:mysql://db4free.net:3306/iia2021";
-        ConectorDB con = new ConectorDB(); 
+        ConnectorDB con = new ConnectorDB(); 
         
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");

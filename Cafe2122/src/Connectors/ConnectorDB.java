@@ -1,4 +1,4 @@
-package Conectors;
+package Connectors;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,7 +9,7 @@ import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class ConectorDB 
+public class ConnectorDB 
 {
     private static Connection conn;
     
@@ -30,12 +30,8 @@ public class ConectorDB
         
         try
         {
-            ConectorDB.conn = DriverManager.getConnection("jdbc:mysql://db4free.net:3306", "iia2021cafe", "uhuetsi2021");
+            ConnectorDB.conn = DriverManager.getConnection("jdbc:mysql://db4free.net:3306", "iia2021cafe", "uhuetsi2021");
             System.out.println("Connection established.");
-            Thread.sleep(10000);
-
-            conn.close();
-            System.out.println("Connection closed. ");
         }catch(SQLException e)
         {
             System.out.println("Error connecting to database: " + e);
