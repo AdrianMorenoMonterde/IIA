@@ -9,11 +9,6 @@ import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
-/**
- *
- * @author adrianmorenomonterde
- */
-
 public class InputConnector 
 {
     private DocumentBuilderFactory dbFactory;

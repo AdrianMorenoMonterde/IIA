@@ -16,10 +16,7 @@ import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-/**
- *
- * @author adrianmorenomonterde
- */
+
 public class OutputConnector 
 {
     private String file_name; 
@@ -56,7 +53,7 @@ public class OutputConnector
         Source source = new DOMSource(document);
         
         //We set where we want to store it
-        Result result = new StreamResult(new java.io.File(name + ".xml")); //Nombre del archivo
+        Result result = new StreamResult(new java.io.File(name + ".xml")); //File name
         Transformer transformer = TransformerFactory.newInstance().newTransformer();
         transformer.transform(source, result);
     }

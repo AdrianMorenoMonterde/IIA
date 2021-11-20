@@ -6,21 +6,21 @@ import org.w3c.dom.Document;
 
 public class Slot 
 {
-    private Queue<Document> colaPrueba = new LinkedList();
+    private Queue<Document> testQueue = new LinkedList();
     
-    public Queue getCola()
+    public Queue getQueue()
     {
-        return colaPrueba;
+        return testQueue;
     }
     
     public Document read() throws Exception
     {
-        return colaPrueba.remove();
+        return testQueue.remove();
     }
     
     public void write(Document doc) throws Exception
     {
-        colaPrueba.add(doc);
+        testQueue.add(doc);
     }
 }
 

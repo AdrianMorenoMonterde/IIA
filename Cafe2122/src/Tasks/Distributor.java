@@ -14,7 +14,7 @@ import org.w3c.dom.NodeList;
 
 public class Distributor 
 {
-    //Para el distributor necesitamos dos slots de salida
+    //Distributor needs two inputs slots
     private Slot input;
     private Slot output1;
     private Slot output2;
@@ -56,30 +56,25 @@ public class Distributor
         this.output2 = output2;
     }
     
-    public void setSalida(Slot s)
-    {
-        //?????
-    }
-    
     public void run() throws Exception
     {
         try
         {
-            int contador = input.getCola().size();
+            int counter = input.getQueue().size();
             
-            for(int i=0; i<contador; i++)
+            for(int i=0; i<counter; i++)
             {
                 Document doc = input.read();
                 XPath xPath = XPathFactory.newInstance().newXPath();
                 NodeList nodo = (NodeList) xPath.compile("/bebida/tipo").evaluate(doc, XPathConstants.NODESET);
                 
-                Node beb = nodo.item(0);
+                Node drk = nodo.item(0);
                 
-                if(beb.getNodeType() == Node.ELEMENT_NODE)
+                if(drk.getNodeType() == Node.ELEMENT_NODE)
                 {
-                    Element tipo = (Element) beb; 
+                    Element type = (Element) drk; 
                     
-                    if(tipo.getTextContent().equalsIgnoreCase("caliente"))
+                    if(type.getTextContent().equalsIgnoreCase("caliente"))
                         output1.write(doc);
                     else
                         output2.write(doc);
