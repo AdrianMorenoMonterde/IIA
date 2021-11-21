@@ -49,7 +49,7 @@ public class ConnectorDB
             System.out.println("Error connecting to database: " + e);
         }
         
-        conn.close(); // ¿ConnectorDB.conn.close()? --> static 
+        //conn.close(); // ¿ConnectorDB.conn.close()? --> static 
         System.out.println("Connection closed.");
     }
     
@@ -195,14 +195,14 @@ public class ConnectorDB
             }
         }finally
         {
-            try
+            /*try
             {
                 //It's important to close the connection when you are done with it
                 conn.close();
             }catch(SQLException ignore)
             {
                 //Propagate the original exception instead of this one that you may want just logged
-            }
+            }*/
         }
         
         return stock; 
