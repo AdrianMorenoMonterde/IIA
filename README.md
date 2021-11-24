@@ -17,3 +17,6 @@
 * **Nombre de la base de datos:** iia2021
 * **Usuario:** iia2021cafe
 * **Contraseña:** uhuetsi2021
+
+## Organización del proyecto: **
+* **Link al board de Trello:** https://trello.com/b/giOQzECG/project-management
