@@ -18,5 +18,5 @@
 * **Usuario:** iia2021cafe
 * **Contraseña:** uhuetsi2021
 
-## Organización del proyecto: **
+## Organización del proyecto: 
 * **Link al board de Trello:** https://trello.com/b/giOQzECG/project-management
