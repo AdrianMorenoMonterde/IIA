@@ -158,6 +158,7 @@ public class ConnectorDB
             try
             {
                 ResultSet rs = stmt.executeQuery("SELECT stock FROM " + kindD + " WHERE nombre= '" + drk + "'");
+
                 //System.out.println("Readed");
                 
                 try
@@ -272,8 +273,8 @@ public class ConnectorDB
     String kindDrink(String drink)
     {
         if(("cafe".equals(drink)) | ("te".equals(drink)))
-            return "bebidas_calientes";
+            return "BebidasCalientes";
         else
-            return "bebidas_frias";
+            return "BebidasFrias";
     }
 }
