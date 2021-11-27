@@ -61,7 +61,7 @@ public class Replicator
     
     public void generaXML(Slot slot1, Slot slot2) throws Exception 
     {
-        int n = slot1.getQueue().size();//Here the output to the translstor is shown
+        int n = slot1.getQueue().size();//Here the output to the translator is shown
         
         for (int i = 0; i < n; i++) 
         {
