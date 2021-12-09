@@ -21,7 +21,8 @@
 ## Organización del proyecto: 
 * **Link al board de Trello:** https://trello.com/b/giOQzECG/project-management
 
-ACTUALIZAR EL README
-BORRAR EL PROYECTO QUE NO ESTAMOS UTILIZANDO 
-COMPLETAR DE INFORMACIÓN MIS ACTIVIDADES EN TRELLO 
-REVISAR CÓDIGO MÍO POR SI TUVIESE QUE HACER ALGUNA MODIFICACIÓN O TRADUCCIÓN DEL INGLÉS AL ESPAÑOL
+## Trabajo Jitterbit
+* Buscar información y videos en internet sobre la herramienta
+* Estructurar documentación
+* Estructurar implementación
+* Planificarla en Trello
