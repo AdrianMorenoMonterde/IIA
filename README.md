@@ -26,3 +26,5 @@
 * Estructurar documentación
 * Estructurar implementación
 * Planificarla en Trello
+* [link información](https://todobi.com/jitterbit-open-source-integration/)
+* [tutorial descarga en MacOs](https://success.jitterbit.com/display/DOC/Installing+Jitterbit+Design+Studio+on+macOS)
