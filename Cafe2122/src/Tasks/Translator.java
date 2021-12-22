@@ -11,24 +11,21 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
-public class Translator 
-{
+public class Translator {
+
     private Slot input;
     private Slot output;
-    
-    public Translator(Slot input, Slot output)
-    {
+
+    public Translator(Slot input, Slot output) {
         this.input = input;
         this.output = output;
     }
-    
-    public void run() throws TransformerConfigurationException, TransformerException, Exception
-    {
+
+    public void run() throws TransformerConfigurationException, TransformerException, Exception {
         InputConnector ic;
         int t = input.getQueue().size();
-        
-        for(int i=0; i<t; i++)
-        {
+
+        for (int i = 0; i < t; i++) {
             ic = new InputConnector();
             TransformerFactory factory = TransformerFactory.newInstance();
             Source xslt = new StreamSource(new File("transform.xsl"));

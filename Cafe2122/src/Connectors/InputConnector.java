@@ -9,36 +9,33 @@ import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
-public class InputConnector 
-{
+public class InputConnector {
+
     private DocumentBuilderFactory dbFactory;
     private DocumentBuilder dBuilder;
     private Document doc;
-    
-    public String run(String file)
-    {
+
+    public String run(String file) {
         String value = "";
         String f = file;
-        
-        if(!f.endsWith(".xml"))
-            f = f+ ".xml";
-        
-        try
-        {
+
+        if (!f.endsWith(".xml")) {
+            f = f + ".xml";
+        }
+
+        try {
             File inputFile = new File(f);
             dbFactory = DocumentBuilderFactory.newInstance();
             dBuilder = dbFactory.newDocumentBuilder();
             doc = dBuilder.parse(inputFile);
-        } catch(IOException | ParserConfigurationException | DOMException | SAXException e)
-        {
+        } catch (IOException | ParserConfigurationException | DOMException | SAXException e) {
             // TO DO
         }
-        
+
         return value;
     }
-    
-    public Document getDocument()
-    {
+
+    public Document getDocument() {
         return doc;
     }
 }

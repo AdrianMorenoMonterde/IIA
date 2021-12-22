@@ -1,4 +1,4 @@
-package Aplication;
+package Application;
 
 import Connectors.*;
 import Tasks.*;
@@ -6,10 +6,9 @@ import Ports.*;
 import java.util.Scanner;
 import javax.xml.transform.TransformerException;
 
-public class App 
-{
-    public static void main(String []args) throws Exception
-    { 
+public class App {
+
+    public static void main(String[] args) throws Exception {
         InputConnector ic = new InputConnector();  //INPUT CONNECTOR
         InputPort ip = new InputPort();     //INPUT PORT
 
@@ -67,7 +66,7 @@ public class App
             Scanner sc = new Scanner(System.in);
             System.out.println("Write the name of the XML command document: ");
             String fichero = sc.nextLine();
-            String order_id=ic.run(fichero); //parses file XML to document
+            String order_id = ic.run(fichero); //parses file XML to document
             ip.writeSlotInput(ic.getDocument()); //write the initial document on the input slot 
 
             //--------------- COMMON TASK COLD AND HOT DRINKS ------------

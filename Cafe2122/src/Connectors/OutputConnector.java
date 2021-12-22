@@ -16,42 +16,36 @@ import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+public class OutputConnector {
 
-public class OutputConnector 
-{
-    private String file_name; 
+    private String file_name;
     private DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     private DocumentBuilder builder;
     private DOMImplementation implementation;
     private Document document;
     private Element root;
-    
-    public OutputConnector(Document docu)
-    {
+
+    public OutputConnector(Document docu) {
         this.document = docu;
     }
-    
-    public OutputConnector(String name)
-    {
-        try
-        {
+
+    public OutputConnector(String name) {
+        try {
             this.builder = factory.newDocumentBuilder();
             this.implementation = builder.getDOMImplementation();
             this.file_name = name;
             this.document = implementation.createDocument(null, name, null);
             this.document.setXmlVersion("1.0");
             this.root = document.getDocumentElement();
-        } catch(ParserConfigurationException ex)
-        {
+        } catch (ParserConfigurationException ex) {
             Logger.getLogger(OutputConnector.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void generate(String name) throws TransformerException
-    {
+
+    public void generate(String name) throws TransformerException {
         //Generates XML
         Source source = new DOMSource(document);
-        
+
         //We set where we want to store it
         Result result = new StreamResult(new java.io.File(name + ".xml")); //File name
         Transformer transformer = TransformerFactory.newInstance().newTransformer();

@@ -12,78 +12,66 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-public class Distributor 
-{
+public class Distributor {
+
     //Distributor needs two inputs slots
     private Slot input;
     private Slot output1;
     private Slot output2;
-    
-    public Distributor(Slot input, Slot output1, Slot output2)
-    {
+
+    public Distributor(Slot input, Slot output1, Slot output2) {
         this.input = input;
         this.output1 = output1;
         this.output2 = output2;
     }
-    
-    public Slot getInput()
-    {
+
+    public Slot getInput() {
         return input;
     }
-      
-    public Slot getOutput1()
-    {
+
+    public Slot getOutput1() {
         return output1;
     }
-    
-    public Slot getOutput2()
-    {
+
+    public Slot getOutput2() {
         return output2;
     }
-    
-    public void setInput(Slot input)
-    {
+
+    public void setInput(Slot input) {
         this.input = input;
     }
-    
-    public void setOutput1(Slot output1)
-    {
+
+    public void setOutput1(Slot output1) {
         this.output1 = output1;
     }
-    
-    public void setOutput2(Slot output2)
-    {
+
+    public void setOutput2(Slot output2) {
         this.output2 = output2;
     }
-    
-    public void run() throws Exception
-    {
-        try
-        {
+
+    public void run() throws Exception {
+        try {
             int counter = input.getQueue().size();
-            
-            for(int i=0; i<counter; i++)
-            {
+
+            for (int i = 0; i < counter; i++) {
                 Document doc = input.read();
                 XPath xPath = XPathFactory.newInstance().newXPath();
                 NodeList nodo = (NodeList) xPath.compile("/bebida/tipo").evaluate(doc, XPathConstants.NODESET);
-                
+
                 Node drk = nodo.item(0);
-                
-                if(drk.getNodeType() == Node.ELEMENT_NODE)
-                {
-                    Element type = (Element) drk; 
-                    
-                    if(type.getTextContent().equalsIgnoreCase("caliente"))
+
+                if (drk.getNodeType() == Node.ELEMENT_NODE) {
+                    Element type = (Element) drk;
+
+                    if (type.getTextContent().equalsIgnoreCase("caliente")) {
                         output1.write(doc);
-                    else
+                    } else {
                         output2.write(doc);
+                    }
                 }
             }
-        } catch(XPathExpressionException ex)
-        {
+        } catch (XPathExpressionException ex) {
             Logger.getLogger(Distributor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
-

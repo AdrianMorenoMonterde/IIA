@@ -2,27 +2,23 @@ package Ports;
 
 import org.w3c.dom.Document;
 
-public class InputPort 
-{
+public class InputPort {
+
     private Slot input = new Slot();
-    
-    public void setinput(Slot input)
-    {
+
+    public void setinput(Slot input) {
         this.input = input;
     }
-    
-    public Slot getInput()
-    {
+
+    public Slot getInput() {
         return input;
     }
-    
-    public void writeSlotInput(Document doc) throws Exception
-    {
+
+    public void writeSlotInput(Document doc) throws Exception {
         input.write(doc);
     }
-    
-    public Document readSlotInput() throws Exception
-    {
+
+    public Document readSlotInput() throws Exception {
         return input.read();
     }
 }

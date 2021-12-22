@@ -15,71 +15,59 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 
+public class ConnectorDB {
 
-public class ConnectorDB 
-{
     private static Connection conn;
     String dbClass = "com.mysql.cj.jdbc.Driver";
     private DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-    private DocumentBuilder builder; 
+    private DocumentBuilder builder;
     private DOMImplementation implementation;
     private Document document;
-    private Element root; 
-    
+    private Element root;
+
     //Connects to the database and test the connection
-    public void conexion() throws InstantiationException, IllegalAccessException, SQLException
-    {
+    public void conexion() throws InstantiationException, IllegalAccessException, SQLException {
         System.out.println("Connecting ...");
-        
-        try
-        {
+
+        try {
             Class.forName(dbClass).newInstance();
             System.out.println("Driver loaded");
-        }catch(ClassNotFoundException e)
-        {
+        } catch (ClassNotFoundException e) {
             System.out.println("Unable to load driver " + e);
         }
-        
-        try
-        {
+
+        try {
             ConnectorDB.conn = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/iia2021", "iia2021cafe", "uhuetsi2021");
             System.out.println("Connection established.");
-        }catch(SQLException e)
-        {
+        } catch (SQLException e) {
             System.out.println("Error connecting to database: " + e);
         }
-        
+
         //conn.close(); // ¿ConnectorDB.conn.close()? --> static 
         System.out.println("Connection closed.");
     }
-    
+
     //Check the stock of a certain drink kind
-    void checkStock(String kindDrink, String drink) throws ClassNotFoundException, SQLException
-    {
-        String kindD = kindDrink; 
-        String drk = drink; 
+    void checkStock(String kindDrink, String drink) throws ClassNotFoundException, SQLException {
+        String kindD = kindDrink;
+        String drk = drink;
         int stock;
         Connection conn = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/iia2021", "iia2021cafe", "uhuetsi2021");
-        
+
         System.out.println("Check");
         Class.forName(dbClass);
-        
-        try
-        {
+
+        try {
             Statement stmt = conn.createStatement();
-            
-            try
-            {
+
+            try {
                 ResultSet rs = stmt.executeQuery("SELECT stock FROM " + kindD + " WHERE nombre='" + drk + "'");
                 System.out.println("Readed");
-                
-                try
-                {
-                    while(rs.next())
-                    {
+
+                try {
+                    while (rs.next()) {
                         int numColumns = rs.getMetaData().getColumnCount();
-                        for(int i=1; i<=numColumns; i++)
-                        {
+                        for (int i = 1; i <= numColumns; i++) {
                             //Column numbers start at 1.
                             //Also there are many methods on the result set to return the column as a particular type. Refer to the sun documentation for the list of valid conversions.
                             System.out.println("COLUMN " + i + " = " + rs.getObject(i));
@@ -87,115 +75,92 @@ public class ConnectorDB
                             System.out.println(stock);
                         }
                     }
-                }finally
-                {
-                    try
-                    {
+                } finally {
+                    try {
                         rs.close();
-                    }catch(SQLException ignore)
-                    {
+                    } catch (SQLException ignore) {
                         //Propagate the original exception instead of this one that you may want just logged
                     }
                 }
-            }finally
-            {
-                try
-                {
+            } finally {
+                try {
                     stmt.close();
-                }catch(SQLException ignore)
-                {
+                } catch (SQLException ignore) {
                     //Propagate the original exception instead of this one that you may want just logged
                 }
             }
-        }finally
-        {
+        } finally {
             //It's important to close the connection when you are done with it
-            try
-            {
+            try {
                 conn.close();
-            }catch(SQLException ignore)
-            {
+            } catch (SQLException ignore) {
                 //Propagate the original exception instead of this one that you may want just logged
             }
         }
     }
-    
+
     //Remove an unit from stock
-    void removeStock(String kindDrink, String drink, int stock) throws ClassNotFoundException, SQLException
-    {
-        String kindD = kindDrink; 
-        String drk = drink; 
-        int sto = stock; 
-        sto = sto -1;
-        
+    void removeStock(String kindDrink, String drink, int stock) throws ClassNotFoundException, SQLException {
+        String kindD = kindDrink;
+        String drk = drink;
+        int sto = stock;
+        sto = sto - 1;
+
         System.out.print("Remove");
         Class.forName(dbClass);
-        
+
         Connection conn = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/iia2021", "iia2021cafe", "uhuetsi2021");
-        
+
         PreparedStatement stmt;
         stmt = conn.prepareStatement("UPDATE " + kindD + "SET stock=" + sto + " WHERE nombre='" + drk + "'");
         int ret = stmt.executeUpdate();
         System.out.println("\nRemoved");
         conn.close();
     }
+
     //Check the amount of stock of a drink
-    int findOutStock(String kindDrink, String drink) throws ClassNotFoundException, SQLException
-    {
-        String kindD = kindDrink; 
-        String drk = drink; 
+    int findOutStock(String kindDrink, String drink) throws ClassNotFoundException, SQLException {
+        String kindD = kindDrink;
+        String drk = drink;
         int stock = 0;
-        
+
         //System.out.println("Find out");
         Class.forName(dbClass);
-        
+
         Connection conn = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/iia2021", "iia2021cafe", "uhuetsi2021");
-        
-        try
-        {
+
+        try {
             Statement stmt = conn.createStatement();
-            
-            try
-            {
+
+            try {
                 ResultSet rs = stmt.executeQuery("SELECT stock FROM " + kindD + " WHERE nombre= '" + drk + "'");
 
                 //System.out.println("Readed");
-                
-                try
-                {
-                    while(rs.next())
-                    {
+                try {
+                    while (rs.next()) {
                         int numColumns = rs.getMetaData().getColumnCount();
-                        for(int i=1; i<=numColumns; i++)
-                        {
+                        for (int i = 1; i <= numColumns; i++) {
                             //Column numbers start at 1.
                             //Also there are many methods on the result set to return the column as a particular type. Refer to the sun documentation for the list of valid conversions
                             //System.out.println("COLUMN" + i + " = " + rs.getObject(i));
                             stock = rs.getInt("stock");
                         }
                     }
-                }finally
-                {
-                    try
-                    {
+                } finally {
+                    try {
                         rs.close();
-                    }catch(SQLException ignore)
-                    {
+                    } catch (SQLException ignore) {
                         //Propagate the original exception instead of this one that you may want just logged
                     }
                 }
-            }finally
-            {
-                try
-                {
+            } finally {
+                try {
                     stmt.close();
-                }catch(SQLException ignore)
-                {
+                } catch (SQLException ignore) {
                     //Propagate the original exception instead of this one that you may want just logged
                 }
             }
-        }finally
-        {
+        } finally {
             /*try
             {
                 //It's important to close the connection when you are done with it
@@ -205,76 +170,70 @@ public class ConnectorDB
                 //Propagate the original exception instead of this one that you may want just logged
             }*/
         }
-        
-        return stock; 
+
+        return stock;
     }
-    
+
     //Increase the stock
-    void increaseStock(String kindDrink, String drink, int stock, int increase) throws ClassNotFoundException, SQLException
-    {
+    void increaseStock(String kindDrink, String drink, int stock, int increase) throws ClassNotFoundException, SQLException {
         String kindD = kindDrink;
-        String drk = drink; 
-        int sto = stock; 
+        String drk = drink;
+        int sto = stock;
         int inc = increase;
         sto = sto + increase;
-        
+
         //System.out.println("Increase");
         Class.forName(dbClass);
-        
+
         Connection conn = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/iia2021", "iia2021cafe", "uhuetsi2021");
-        
+
         PreparedStatement stmt;
         stmt = conn.prepareStatement("UPDATE " + kindD + " SET stock=" + sto + " WHERE nombre='" + drk + "'");
         int ret = stmt.executeUpdate();
         //System.out.println("Increased");
         conn.close();
     }
-    
-    public Document lookCommand(Document command) throws ClassNotFoundException, SQLException, ParserConfigurationException
-    {
+
+    public Document lookCommand(Document command) throws ClassNotFoundException, SQLException, ParserConfigurationException {
         String drink;
         NodeList nList = command.getElementsByTagName("nombre");
-        
-        for(int i=0 ; i<nList.getLength(); i++)
-        {
+
+        for (int i = 0; i < nList.getLength(); i++) {
             drink = nList.item(i).getTextContent();
-            String stock; 
+            String stock;
             int number_stock = findOutStock(kindDrink(drink), drink);
-            
-            if(number_stock > 0)
-            {
+
+            if (number_stock > 0) {
                 stock = String.valueOf(number_stock);
-                
+
                 Element root2 = command.getDocumentElement(); //root node
                 Element keyNode = command.createElement("stock");
-                
+
                 Text nodeKeyValue = command.createTextNode("true");
-                
+
                 keyNode.appendChild(nodeKeyValue);
                 root2.appendChild(keyNode);
-            }
-            else
-            {
+            } else {
                 stock = "0";
-                
+
                 Element root2 = command.getDocumentElement(); //root node
                 Element keyNode = command.createElement("stock");
-                
+
                 Text nodeKeyValue = command.createTextNode("false");
-                
+
                 keyNode.appendChild(nodeKeyValue);
                 root2.appendChild(keyNode);
             }
         }
-        
+
         return command;
     }
-    
-    String kindDrink(String drink)
-    {
-        if(("cafe".equals(drink)) | ("te".equals(drink)))
+
+    String kindDrink(String drink) {
+        if (("cafe".equals(drink)) | ("te".equals(drink))) {
             return "BebidasCalientes";
-        else
+        } else {
             return "BebidasFrias";
+        }
     }
 }
